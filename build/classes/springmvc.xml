@@ -13,8 +13,10 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<!-- 配置Controller扫描 -->
     <context:component-scan base-package="com.situ.ssm.controller" />
+    
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven />
+    
     <!-- 配置视图解析器 -->
     <bean    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
        <!-- 前缀 -->
@@ -22,5 +24,8 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
        <!-- 后缀 -->
        <property name="suffix" value=".jsp" />
     </bean>
+    
+     <!-- 对静态资源的访问 -->  
+  	<mvc:default-servlet-handler/> 
 
 </beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.situ.ssm.dao.CourseDao">
+  	<!-- 查询所有课程信息 -->
+  	<select id="findAll" resultType="Course">
+  		select * from  course
+  	</select>
+  	
+  	 <!-- 班级课程信息查询 -->
+  	<!-- <resultMap type="Banji" id="BanjiCourseMap">
+    	<id property="id" column="id"/>
+    	<result property="name" column="name"/>
+    	<collection property="courseList" ofType="Course">
+    		<id property="id" column="course_id"/>
+       		<result property="name" column="course_name"/>
+       		<result property="credit" column="course_credit"/>
+    	</collection>
+    </resultMap>
+
+	<select id="findBanjiCourse" parameterType="Student" resultMap="BanjiCourseMap">
+		SELECT b.id,b.name,c.name as course_name,c.id as course_id,c.credit as course_credit
+        FROM banji AS b INNER JOIN banji_course AS bc ON b.id=bc.banji_id
+        INNER JOIN course AS c ON bc.course_id = c.id;
+	</select>  -->
+  	
+  	
+  </mapper>

@@ -44,37 +44,50 @@
 <body>
 
 
-
-	<table class="table  container" width:70% >
-		<tr>
-			<td>id</td>
-			
-			<td>姓名</td>
-			<td>年龄</td>
-			<td>性别</td>
-			<td>地址</td>
-
-			<td>删除</td>
-			<td>修改</td>
-		</tr>
-		<c:forEach items="${list}" var="student">
+	<div class="container" width=60%>
+		<form id="searchForm" action="${pageContext.request.contextPath}/student/findByCondition.action" method="post">
+			 姓名:<input type="text" name="name" value="${searchCondition.name}" /> 
+			 年龄:<input type="text" name="age" value="${searchCondition.age}" /> 
+			 性别:<select id="gender" name="gender">
+				<option value="">不限</option>
+				<option value="男">男</option>
+				<option value="女">女</option>
+			</select>
+			<button class="btn btn-danger">搜索</button>
+		</form>
+		
+		<table class="table container">
 			<tr>
-				
-				<td>${student.id}</td>
-				<td>${student.name}</td>
-				<td>${student.age}</td>
-				<td>${student.gender}</td>
-				<td>${student.address}</td>
-
-				<td><a
-					href="${pageContext.request.contextPath}/student/deleteById.action?id=${student.id}">删除</a></td>
-				<td><a
-					href="${pageContext.request.contextPath}/students?method=toUpdateStudent&id=${student.id}">修改</a></td>
-
+				<td>id</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>性别</td>
+				<td>地址</td>
+				<td>班级</td>
+				<td>删除</td>
+				<td>修改</td>
 			</tr>
-		</c:forEach>
+			<c:forEach items="${list}" var="student">
+				<tr>
 
-	</table>
+					<td>${student.id}</td>
+					<td>${student.name}</td>
+					<td>${student.age}</td>
+					<td>${student.gender}</td>
+					<td>${student.address}</td>
+					<td>${student.banji.name}</td>
+					<td><a
+						href="${pageContext.request.contextPath}/student/deleteById.action?id=${student.id}">删除</a></td>
+					<td><a
+						href="${pageContext.request.contextPath}/student/findById.action?id=${student.id}">修改</a></td>
+
+				</tr>
+			</c:forEach>
+		</table>
+		<a href="${pageContext.request.contextPath}/student/getTurn.action">添加学生</a><br>
+		<a href="${pageContext.request.contextPath}/student/findBanjiCourseInfo.action">学生班級课程信息</a><br>
+		<a href="${pageContext.request.contextPath}/banjiCourse/findBanjiCourse.action">班級课程信息</a><br>
+	</div>
 
 
 </body>

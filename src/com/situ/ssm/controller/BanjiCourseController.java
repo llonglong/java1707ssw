@@ -32,9 +32,9 @@ public class BanjiCourseController {
 		for (BanjiCourse banjiCourse : list) {
 			System.out.println(banjiCourse);
 		}
-		return "banjiCourse_list";
-		
+		return "banjiCourse_list";	
 	}
+	
 	
 	@RequestMapping(value="/deleteById")
 	public String deleteById(int id) {

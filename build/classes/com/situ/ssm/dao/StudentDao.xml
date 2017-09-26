@@ -20,6 +20,12 @@
 			<result property="name" column="banji_name"/>
 		</association>
 	</resultMap>
+	<select id="findPageBeanList" parameterType="int" resultMap="studentInfoMap">
+			SELECT s.id,s.name,s.age,s.gender,s.address,b.id as banji_id,b.name as banji_name 
+			FROM student AS s INNER JOIN banji AS b
+			ON s.banji_id=b.id
+			limit #{index},#{pageSize}
+	</select>
 	<select id="findAll" parameterType="int" resultMap="studentInfoMap">
 		SELECT s.id,s.name,s.age,s.gender,s.address,b.id as banji_id,b.name as banji_name 
 		FROM student AS s INNER JOIN banji AS b
@@ -52,6 +58,11 @@
 		FROM student AS s INNER JOIN banji AS b ON s.banji_id=b.id
 		INNER JOIN banji_course AS bc ON b.id=bc.banji_id
 		INNER JOIN course AS c ON bc.course_id=c.id	
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+			SELECT COUNT(*) FROM
+			student
 	</select>
 	
 	<!-- <resultMap type="Banji" id="BanjiCourseMap">
@@ -104,4 +115,10 @@
 		insert into
 		student(name,age,gender,address,banji_id) values (#{name},#{age},#{gender},#{address},#{banji_id})
 	</insert>
+	
+	
+	
+	
+	
+	
 </mapper>

@@ -10,6 +10,7 @@ import com.situ.ssm.dao.StudentDao;
 import com.situ.ssm.pojo.Banji;
 import com.situ.ssm.pojo.Student;
 import com.situ.ssm.service.IStudentService;
+import com.situ.ssm.vo.PageBean;
 
 @Service("studentService")
 public class StudentServiceImpl implements IStudentService{
@@ -66,6 +67,26 @@ public class StudentServiceImpl implements IStudentService{
 		// TODO Auto-generated method stub
 		return studentDao.findBanjiCourse();
 	}
+
+
+	@Override
+	public PageBean<Student> getPageBean(Integer pageIndex, int pageSize) {
+		PageBean<Student> pageBean = new PageBean<Student>();
+		pageBean.setPageIndex(pageIndex);
+		pageBean.setPageSize(pageSize);
+		int totalCount = studentDao.getTotalCount();
+		pageBean.setTotalCount(totalCount);
+		int totalPage = (int) Math.ceil(1.0 * totalCount / pageSize); 
+		pageBean.setTotalPage(totalPage);
+		int index = (pageIndex - 1) * pageSize;
+		List<Student> list = studentDao.findPageBeanList(index, pageSize);
+		pageBean.setList(list);
+		
+		return pageBean;
+
+	}
+
+
 
 
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.situ.ssm.pojo.Banji;
 import com.situ.ssm.pojo.Student;
+import com.situ.ssm.vo.PageBean;
 
 public interface IStudentService {
 	public List<Student> findAll();
@@ -21,6 +22,8 @@ public interface IStudentService {
 	public List<Student> findBanjiCourseInfo();
 
 	public List<Student> findBanjiCourse();
+
+	public PageBean getPageBean(Integer pageIndex, int pageSize);
 
 
 
